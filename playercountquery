@@ -1,0 +1,24 @@
+<?php
+$serverId = '5158517';
+$apiUrl = "https://api.battlemetrics.com/servers/$serverId";
+
+$ch = curl_init($apiUrl);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+$response = curl_exec($ch);
+curl_close($ch);
+
+if ($response === false) {
+    die('Error fetching data from BattleMetrics API.');
+}
+
+$data = json_decode($response, true);
+
+if (isset($data['data']['attributes']['players'])) {
+    $playerCount = $data['data']['attributes']['players'];
+    $maxPlayers = $data['data']['attributes']['maxPlayers'];
+    echo "Current Player Count: $playerCount / $maxPlayers";
+} else {
+    echo 'Player count information is unavailable.';
+}
+?>
