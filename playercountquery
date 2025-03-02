@@ -1,4 +1,3 @@
-<?php
 $serverId = '5158517';
 $apiUrl = "https://api.battlemetrics.com/servers/$serverId";
 
@@ -21,4 +20,3 @@ if (isset($data['data']['attributes']['players'])) {
 } else {
     echo 'Player count information is unavailable.';
 }
-?>
